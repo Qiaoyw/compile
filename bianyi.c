@@ -188,7 +188,7 @@ void getsym(){
 
 int main(int argc, char *argv[]){
 
-	FILE *fp = fopen("argv[1]","r");;
+	FILE *fp = fopen(argv[1],"r");;
 	if(fp==NULL) printf("error"); 
 	while(fgets(txt,997,fp)!=NULL){
 		now=0;
