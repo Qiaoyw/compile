@@ -43,7 +43,7 @@ void catToken(){
 
 
 int isSpace(){
-	if(recent==' '||recent=='\t'||recent=='\n'||recent=='\r'){
+	if(recent==' '||recent=='\t'||recent=='\n'){
 		return 1;
 	}
 	else return 0;
@@ -191,7 +191,7 @@ void getsym(){
 
 int main(int argc, char *argv[]){
 
-	FILE *fp = fopen(argv[1],"r");;
+	FILE *fp = fopen(argv[1],"r");
 	if(fp==NULL) printf("error"); 
 	while(fgets(txt,997,fp)!=NULL&&go==0){
 		now=0;
