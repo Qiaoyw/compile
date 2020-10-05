@@ -15,6 +15,8 @@ char recent;
 
 int type;
 
+int go;
+
 
 void clearToken(){
 	memset(token,'\0',sizeof(token));
@@ -83,6 +85,7 @@ int transNum(){
 
 void error(){
 	printf("Unknown\n");
+	go=1;
 }
 
 void chu(){
@@ -190,7 +193,7 @@ int main(int argc, char *argv[]){
 
 	FILE *fp = fopen(argv[1],"r");;
 	if(fp==NULL) printf("error"); 
-	while(fgets(txt,997,fp)!=NULL){
+	while(fgets(txt,997,fp)!=NULL&&go==0){
 		now=0;
 		getsym();
 		memset(txt,'\0',sizeof(txt));
