@@ -141,7 +141,7 @@ void chu(){
 }
 
 void getsym(){
-	while(txt[now]!='\0'){
+	while(txt[now]!='\0'&&go==0){
 		clearToken();
 		getchar1();
     	while(isSpace()) getchar1();
