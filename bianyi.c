@@ -19,6 +19,8 @@ int type;
 void clearToken(){
 	memset(token,'\0',sizeof(token));
 	array=0;
+	recent='\0';
+	type=0;
 } 
 
 
@@ -33,13 +35,13 @@ void retract(){
 
 
 void catToken(){
-	token[array]=recent-'0';
+	token[array]=recent;
 	array++;
 } 
 
 
 int isSpace(){
-	if(recent==' '||recent=='\t'||recent=='\n'){
+	if(recent==' '||recent=='\t'||recent=='\n'||recent=='\r'){
 		return 1;
 	}
 	else return 0;
@@ -58,12 +60,12 @@ int isDigit(){
 
 
 int reserver(){
-	if(strcmp(token,"BEGIN")) return 1;
-	else if(strcmp(token,"END")) return 2;
-	else if(strcmp(token,"FOR")) return 3;
-	else if(strcmp(token,"IF")) return 4;
-	else if(strcmp(token,"THEN")) return 5;
-	else if(strcmp(token,"ELSE")) return 6;
+	if(!strcmp(token,"BEGIN")) return 1;
+	else if(!strcmp(token,"END")) return 2;
+	else if(!strcmp(token,"FOR")) return 3;
+	else if(!strcmp(token,"IF")) return 4;
+	else if(!strcmp(token,"THEN")) return 5;
+	else if(!strcmp(token,"ELSE")) return 6;
 	else return 0;
 } 
 
@@ -73,7 +75,7 @@ int transNum(){
 	int i=0;
 	for(i=0;i<array;i++){
 		number*=10;
-		number+=token[i];
+		number=number+token[i]-'0';
 	}
 	return number;
 } 
@@ -140,8 +142,7 @@ void getsym(){
 		clearToken();
 		getchar1();
     	while(isSpace()) getchar1();
-    	if(isLetter()){   
-		    catToken();             
+    	if(isLetter()){               
     		while(isLetter()||isDigit()){
 	    		catToken();
 		    	getchar1();
@@ -176,7 +177,9 @@ void getsym(){
     	else if(recent==',') type=12;
     	else if(recent=='(') type=13;
     	else if(recent==')') type=14;
+    	else if(recent=='\0') break;
       	else error();
+      	
     	chu();
 	}
 
