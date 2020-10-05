@@ -43,7 +43,7 @@ void catToken(){
 
 
 int isSpace(){
-	if(recent==' '||recent=='\t'||recent=='\n'){
+	if(recent==' '||recent=='\t'||recent=='\n'||recent=='\r'){
 		return 1;
 	}
 	else return 0;
